@@ -1,12 +1,5 @@
 ## Setup & Run
 
-### Prerequisites
-- Python 3.11+
-- Node.js 18+
-- Docker
-
----
-
 ### 1. Clone & Navigate
 
 ```bash
