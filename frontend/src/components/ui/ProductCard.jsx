@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 export default function ProductCard({ product, onAddToCart }) {
+  // Navigate to product detail on card click
   const navigate = useNavigate();
 
   const handleClick = () => navigate(`/product/${product.id}`);
