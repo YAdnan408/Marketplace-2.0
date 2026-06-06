@@ -1,4 +1,5 @@
 export default function OrderCard({ order }) {
+  // Helper classes and function
   const statusClass = `order-status order-status-${order.status}`;
   const capitalise = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 
