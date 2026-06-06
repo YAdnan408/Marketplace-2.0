@@ -36,7 +36,7 @@ export default function Login() {
       <div className="auth-wrapper">
         <div className="auth-card">
           <div className="auth-header">
-            <div className="brand-logo">🛍</div>
+            <div className="brand-logo">🏪</div>
             <h1>Welcome Back</h1>
             <p className="subtitle">Sign in to your account</p>
           </div>
