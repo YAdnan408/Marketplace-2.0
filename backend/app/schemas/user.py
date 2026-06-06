@@ -18,6 +18,8 @@ class LoginRequest(BaseModel):
     user_type: str             # "customer" | "seller"
     email:     EmailStr
     password:  str
+    # Login credentials
+
 
 
 class UpdateProfileRequest(BaseModel):
