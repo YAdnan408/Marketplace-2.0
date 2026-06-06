@@ -24,7 +24,7 @@ export default function Navbar({ showSearch, onSearch, backTo, backLabel }) {
   const isCustomer = user?.user_type === "customer";
 
   return (
-    <nav className="navbar">
+    <nav className="navbar" aria-label="Main Navigation">
       <div className="nav-brand">🛍 Marketplace</div>
       <div className="nav-actions">
         {showSearch && (
