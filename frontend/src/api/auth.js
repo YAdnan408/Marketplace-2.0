@@ -70,6 +70,7 @@ api.interceptors.response.use(
 );
 
 // ── Auth endpoints ────────────────────────────────────────────────────────────
+// These functions interact with auth-related API endpoints.
 
 export async function signup(data) {
   const res = await api.post("/signup", data);
