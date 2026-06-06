@@ -4,6 +4,7 @@ import { getMe, logoutUser } from "../api/auth";
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
+  // Application auth state
   const [user, setUser]         = useState(null);
   const [loading, setLoading]   = useState(true); // true while checking session on mount
 
