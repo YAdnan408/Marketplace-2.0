@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 export default function Modal({ open, onClose, title, children, size = "default" }) {
-  // Close on Escape key
+  // ESC key handler for accessibility
   useEffect(() => {
     if (!open) return;
     const handler = (e) => { if (e.key === "Escape") onClose(); };
