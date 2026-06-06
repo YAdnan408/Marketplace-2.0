@@ -32,7 +32,7 @@ export default function ProductCard({ product, onAddToCart }) {
               }}
               style={{ cursor: product.stock_quantity === 0 ? "not-allowed" : "pointer" }}
             >
-              {product.stock_quantity === 0 ? "Out of Stock" : "+ Cart"}
+              {product.stock_quantity === 0 ? "Sold Out" : "Add to Cart"}
             </span>
           )}
         </div>
