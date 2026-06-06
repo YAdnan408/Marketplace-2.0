@@ -51,7 +51,7 @@ class CustomerProfileResponse(BaseModel):
     address:       str
     profile_image: str
 
-    model_config = {"from_attributes": True}
+    model_config = {"from_attributes": True}  # Enable ORM model compatibility
 
 
 class SellerProfileResponse(BaseModel):
