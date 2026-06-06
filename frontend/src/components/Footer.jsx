@@ -15,7 +15,7 @@ export default function Footer() {
       <div className="footer-inner">
         <div className="footer-brand">
           <div className="footer-logo">🛍 Marketplace</div>
-          <p className="footer-tagline">Bangladesh's local marketplace for everyone.</p>
+          <p className="footer-tagline">The premier local marketplace for everyone.</p>
         </div>
         <div className="footer-links">
           <div className="footer-col">
@@ -46,7 +46,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="footer-bottom">
-        <p>© 2026 Marketplace. Built with ❤️ in Bangladesh.</p>
+        <p>© 2026 Marketplace. Built with ❤️ with passion.</p>
       </div>
     </footer>
   );
