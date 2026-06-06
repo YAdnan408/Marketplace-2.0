@@ -48,6 +48,8 @@ class TokenResponse(BaseModel):
     access_token: str
     token_type:   str = "bearer"
     user:         AuthUserResponse
+    # Token and user data
+
 
 
 class CustomerProfileResponse(BaseModel):
