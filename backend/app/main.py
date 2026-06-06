@@ -13,7 +13,7 @@ settings = get_settings()
 
 
 def create_app() -> FastAPI:
-    logger.info("Initializing Marketplace API...")
+    logger.info("Launching Marketplace API...")
     app = FastAPI(
         title="Marketplace API",
         description="FastAPI backend for the Marketplace project",
