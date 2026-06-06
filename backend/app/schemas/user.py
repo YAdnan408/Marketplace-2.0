@@ -10,6 +10,8 @@ class SignupRequest(BaseModel):
     password:     str
     phone_number: str = ""
     address:      str = ""    # used by both customer (address) and seller (business_address)
+    # Registration details
+
 
 
 class LoginRequest(BaseModel):
