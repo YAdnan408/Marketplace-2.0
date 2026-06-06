@@ -40,7 +40,7 @@ export default function Signup() {
         <div className="auth-card">
           <div className="auth-header">
             <div className="brand-logo">🛍</div>
-            <h1>Create Account</h1>
+            <h1>Join Us</h1>
             <p className="subtitle">Join our marketplace today</p>
           </div>
 
