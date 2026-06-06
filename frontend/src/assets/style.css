@@ -72,7 +72,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 24px;
+    padding: 32px;
     background:
         radial-gradient(ellipse at 0% 0%, rgba(201,168,76,0.12) 0%, transparent 50%),
         radial-gradient(ellipse at 100% 100%, rgba(107,76,59,0.1) 0%, transparent 50%),
