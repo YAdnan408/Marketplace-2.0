@@ -34,6 +34,7 @@ export default function Navbar({ showSearch, onSearch, backTo, backLabel }) {
               type="text"
               className="nav-search"
               placeholder="Search products…"
+              aria-label="Search products"
               onChange={(e) => onSearch?.(e.target.value)}
             />
           </div>
