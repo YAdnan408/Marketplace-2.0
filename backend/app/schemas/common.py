@@ -13,5 +13,5 @@ class ErrorResponse(BaseModel):
 
 
 class MessageResponse(BaseModel):
-    """Simple success message for endpoints that don't return data."""
+    """Simple success message for endpoints that don't return data. Used for status updates."""
     message: str
