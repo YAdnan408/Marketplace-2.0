@@ -1,6 +1,7 @@
 import api from "./auth";
 
 // ── Customer ──────────────────────────────────────────────────────────────────
+// Functions for customers to place and view their orders.
 
 export async function placeOrder(cartItems, shippingAddress, shippingCost = 0) {
   const res = await api.post("/orders/checkout", {
