@@ -78,7 +78,7 @@ export default function Profile() {
         {/* Right: Details */}
         <div className="profile-right">
           <div className="profile-section-header">
-            <h2>Profile Details</h2>
+            <h2>Account Information</h2>
             {!editMode && <button className="btn-edit-profile" onClick={() => setEditMode(true)}>Edit Profile</button>}
           </div>
 
