@@ -26,6 +26,8 @@ class UpdateProfileRequest(BaseModel):
     name:         str
     phone_number: str = ""
     address:      str = ""
+    # Profile update fields
+
 
 
 # ── Response payloads ─────────────────────────────────────────────────────────
