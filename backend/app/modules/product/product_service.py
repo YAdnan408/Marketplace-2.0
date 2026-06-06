@@ -133,7 +133,7 @@ class ProductService(IProductService):
         if product is None:
             raise ProductNotFoundError(f"Product {product_id} not found or not owned by you.")
         await self._products.delete(product)
-        return {"message": "Product deleted successfully."}
+        return {"message": "Product has been deleted successfully."}
 
     async def update_product_image(
         self, seller_id: int, product_id: int, image_name: str
