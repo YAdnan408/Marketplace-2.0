@@ -1,6 +1,7 @@
 import api from "./auth";
 
 // ── Categories ────────────────────────────────────────────────────────────────
+// Functions to fetch product categories.
 
 export async function getCategories() {
   const res = await api.get("/products/categories");
