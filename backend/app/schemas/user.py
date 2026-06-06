@@ -38,6 +38,8 @@ class AuthUserResponse(BaseModel):
     name:      str
     email:     str
     user_type: str
+    # Authenticated user info
+
 
 
 class TokenResponse(BaseModel):
