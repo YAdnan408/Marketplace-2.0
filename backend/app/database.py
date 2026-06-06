@@ -9,7 +9,7 @@ settings = get_settings()
 engine = create_async_engine(
     settings.active_database_url,
     echo=False,
-    pool_pre_ping=True,
+    pool_pre_ping=True,  # Enable connectivity checks
 )
 
 async_session = async_sessionmaker(
