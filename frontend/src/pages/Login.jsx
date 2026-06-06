@@ -67,7 +67,7 @@ export default function Login() {
             </div>
             <div className="field-group">
               <label>Password</label>
-              <input type="password" placeholder="Enter your password" value={password}
+              <input type="password" placeholder="Password" value={password}
                 onChange={(e) => setPassword(e.target.value)} required />
             </div>
             <button type="submit" className="btn-primary" disabled={loading}>
