@@ -45,6 +45,7 @@ def create_app() -> FastAPI:
     register_exception_handlers(app)
 
     # ── Routers ───────────────────────────────────────────────────────────────
+    # Import and register route modules
     from .modules.user.routes import router as user_router
     from .modules.product.routes import router as product_router
     from .modules.order.routes import router as order_router
