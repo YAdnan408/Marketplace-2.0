@@ -2,6 +2,7 @@ import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 export default function ProtectedRoute({ allowedRole }) {
+  // Auth state from AuthContext
   const { isAuthenticated, user, loading } = useAuth();
 
   // While AuthContext is calling GET /api/me on mount, show nothing.
