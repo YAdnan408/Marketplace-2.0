@@ -79,3 +79,4 @@ class SellerProfileResponse(BaseModel):
 class ProfileImageResponse(BaseModel):
     message:       str
     profile_image: str
+    # Profile image data
