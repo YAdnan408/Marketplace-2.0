@@ -10,6 +10,7 @@ class Product(Base):
 
     __tablename__ = "products"
 
+    # Product fields
     id:             Mapped[int]        = mapped_column(Integer, primary_key=True)
     name:           Mapped[str]        = mapped_column(String(200), nullable=False)
     description:    Mapped[str | None] = mapped_column(Text, nullable=True)
