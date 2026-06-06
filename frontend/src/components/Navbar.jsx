@@ -25,7 +25,7 @@ export default function Navbar({ showSearch, onSearch, backTo, backLabel }) {
 
   return (
     <nav className="navbar" aria-label="Main Navigation">
-      <div className="nav-brand">🛍 Marketplace</div>
+      <div className="nav-brand">🛒 Marketplace 2.0</div>
       <div className="nav-actions">
         {showSearch && (
           <div className="nav-search-wrap">
