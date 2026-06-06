@@ -2,6 +2,7 @@
 // Cart is stored as a JSON string in a cookie named "mp_cart".
 // Each item: { id, name, price, image_name, category_name, stock_quantity, qty }
 
+// Helper functions for cookie management
 const CART_COOKIE = "mp_cart";
 const EXPIRY_DAYS = 7;
 
