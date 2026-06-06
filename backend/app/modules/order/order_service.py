@@ -113,6 +113,7 @@ class OrderService(IOrderService):
         total_price = subtotal + float(shipping_cost)
 
         # ── Persist atomically ─────────────────────────────────────
+        # Order is created and stock is decremented within the same transaction.
         order = await self._repo.create_order(
             customer_id=customer_id,
             total_price=total_price,
