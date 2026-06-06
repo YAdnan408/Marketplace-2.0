@@ -442,7 +442,7 @@ input:focus {
 
 .dashboard-container {
     max-width: 1040px;
-    margin: 64px auto;
+    margin: 70px auto;
     padding: 0 44px;
     animation: fadeUp 0.4s var(--ease) both;
 }
