@@ -1,15 +1,19 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+import logging
 
 from .config import get_settings
 from .errors import register_exception_handlers
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 settings = get_settings()
 
 
 def create_app() -> FastAPI:
-
+    logger.info("Initializing Marketplace API...")
     app = FastAPI(
         title="Marketplace API",
         description="FastAPI backend for the Marketplace project",
