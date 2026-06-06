@@ -10,7 +10,7 @@ class Settings(BaseSettings):
     # ── JWT ───────────────────────────────────────────────────────────────────
     secret_key: str = "change_this_in_production"
     jwt_algorithm: str = "HS256"
-    access_token_expire_minutes: int = 60
+    access_token_expire_minutes: int = 65
     refresh_token_expire_days: int = 7
 
     # ── Database ──────────────────────────────────────────────────────────────
