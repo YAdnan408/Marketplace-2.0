@@ -53,6 +53,10 @@ class ICategoryRepository(ABC):
         ...
 
     @abstractmethod
+    def get_by_id_or_none(self, category_id: int):
+        ...
+
+    @abstractmethod
     def create(self, name: str, description: str = ""):
         ...
 

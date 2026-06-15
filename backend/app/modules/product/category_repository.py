@@ -22,6 +22,9 @@ class CategoryRepository(ICategoryRepository):
         )
         return result.scalars().first()
 
+    async def get_by_id_or_none(self, category_id: int):
+        return await self.get_by_id(category_id)
+
     async def get_by_name(self, name: str):
         result = await self._db.execute(
             select(Category).where(Category.name == name)

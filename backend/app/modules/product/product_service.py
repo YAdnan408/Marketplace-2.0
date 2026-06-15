@@ -95,6 +95,11 @@ class ProductService(IProductService):
         stock_quantity = self._parse_stock(data.get("stock_quantity", 0))
         category_id    = self._parse_category_id(data.get("category_id"))
 
+        if category_id:
+            category = await self._categories.get_by_id_or_none(category_id)
+            if not category:
+                raise ProductValidationError(f"Category with ID {category_id} does not exist.")
+
         product = await self._products.create({
             "name":           name,
             "description":    data.get("description", "").strip(),
@@ -118,6 +123,11 @@ class ProductService(IProductService):
         price          = self._parse_price(data.get("price"))
         stock_quantity = self._parse_stock(data.get("stock_quantity", 0))
         category_id    = self._parse_category_id(data.get("category_id"))
+
+        if category_id:
+            category = await self._categories.get_by_id_or_none(category_id)
+            if not category:
+                raise ProductValidationError(f"Category with ID {category_id} does not exist.")
 
         updated = await self._products.update(product, {
             "name":           name,
