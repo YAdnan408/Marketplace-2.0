@@ -106,9 +106,9 @@ async def upload_product_image(
     image_name = f"product_{product_id}_{current_seller['user_id']}.{ext}"
 
     upload_folder = os.path.join(settings.upload_dir, "product_images")
-    save_upload(image.file, upload_folder, image_name)
+    stored_path = save_upload(image.file, upload_folder, image_name)
 
     updated = await _get_service(db).update_product_image(
-        current_seller["user_id"], product_id, image_name
+        current_seller["user_id"], product_id, stored_path
     )
     return {"message": "Product image uploaded successfully.", "product": updated}

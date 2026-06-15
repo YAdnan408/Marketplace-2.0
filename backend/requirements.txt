@@ -18,3 +18,4 @@ python-multipart==0.0.9
 
 # ── Environment ───────────────────────────────────────────────────────────────
 python-dotenv==1.0.1
+cloudinary==1.40.0

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { getSellerOrders, updateOrderStatus } from "../../api/orders";
+import { getImageUrl } from "../../api/utils";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import Modal from "../../components/ui/Modal";
@@ -111,7 +112,7 @@ export default function SellerOrders() {
                     <div className="seller-order-item-row" key={item.product_id}>
                       <div className="seller-order-item-img">
                         {item.image_name
-                          ? <img src={`/uploads/product_images/${item.image_name}`} alt={item.product_name} />
+                          ? <img src={getImageUrl(item.image_name, "product")} alt={item.product_name} />
                           : <span>📷</span>}
                       </div>
                       <div className="seller-order-item-info">

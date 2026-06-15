@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { getImageUrl } from "../../api/utils";
 import { getCart, removeFromCart, updateCartQty, clearCart, cartTotal } from "../../hooks/useCart";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
@@ -56,7 +57,7 @@ export default function Cart() {
               <div className="cart-item" key={item.id}>
                 <div className="cart-item-image">
                   {item.image_name
-                    ? <img src={`/uploads/product_images/${item.image_name}`} alt={item.name} />
+                    ? <img src={getImageUrl(item.image_name, "product")} alt={item.name} />
                     : <div className="cart-item-no-image">📷</div>}
                 </div>
                 <div className="cart-item-info">

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { getImageUrl } from "../../api/utils";
 import { getCart, clearCart, cartTotal } from "../../hooks/useCart";
 import { getProfile } from "../../api/auth";
 import { placeOrder } from "../../api/orders";
@@ -135,7 +136,7 @@ export default function Checkout() {
                   <div className="checkout-item" key={item.id}>
                     <div className="checkout-item-img">
                       {item.image_name
-                        ? <img src={`/uploads/product_images/${item.image_name}`} alt={item.name} />
+                        ? <img src={getImageUrl(item.image_name, "product")} alt={item.name} />
                         : <span>📷</span>}
                     </div>
                     <div className="checkout-item-info">

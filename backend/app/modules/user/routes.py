@@ -196,12 +196,12 @@ async def upload_profile_image(
     image_name = f"{user_type}_{user_id}_avatar.{ext}"
 
     upload_folder = os.path.join(settings.upload_dir, "profile_images")
-    save_upload(image.file, upload_folder, image_name)
+    stored_path = save_upload(image.file, upload_folder, image_name)
 
     service = _get_service(user_type, db)
-    await service.update_profile_image(user_id, image_name)
+    await service.update_profile_image(user_id, stored_path)
 
     return ProfileImageResponse(
         message="Profile image updated successfully",
-        profile_image=image_name,
+        profile_image=stored_path,
     )

@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { getImageUrl } from "../../api/utils";
 
 export default function ProductCard({ product, onAddToCart }) {
   // Navigate to product detail on card click
@@ -10,7 +11,7 @@ export default function ProductCard({ product, onAddToCart }) {
     <div className="featured-card" onClick={handleClick} style={{ cursor: "pointer" }}>
       <div className="featured-card-img">
         {product.image_name ? (
-          <img src={`/uploads/product_images/${product.image_name}`} alt={product.name} />
+          <img src={getImageUrl(product.image_name, "product")} alt={product.name} />
         ) : (
           <div className="featured-card-no-img">📷</div>
         )}

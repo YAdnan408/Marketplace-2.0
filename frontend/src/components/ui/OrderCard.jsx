@@ -1,3 +1,5 @@
+import { getImageUrl } from "../../api/utils";
+
 export default function OrderCard({ order }) {
   // Helper classes and function
   const statusClass = `order-status order-status-${order.status}`;
@@ -18,7 +20,7 @@ export default function OrderCard({ order }) {
           <div className="order-item-row" key={item.product_id}>
             <div className="order-item-img">
               {item.image_name ? (
-                <img src={`/uploads/product_images/${item.image_name}`} alt={item.product_name} />
+                <img src={getImageUrl(item.image_name, "product")} alt={item.product_name} />
               ) : (
                 <span>📷</span>
               )}
