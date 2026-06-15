@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { getProfile, updateProfile, uploadProfileImage } from "../api/auth";
+import { getImageUrl } from "../api/utils";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Spinner from "../components/ui/Spinner";
@@ -64,7 +65,7 @@ export default function Profile() {
           <div className="avatar-wrapper">
             <img
               className="avatar-img"
-              src={profile.profile_image ? `/uploads/profile_images/${profile.profile_image}` : "/uploads/profile_images/default_avatar.png"}
+              src={profile.profile_image ? getImageUrl(profile.profile_image, "profile") : "/uploads/profile_images/default_avatar.png"}
               alt="Profile"
             />
             <label className="avatar-upload-btn" title="Change photo" htmlFor="imageInput">📷</label>

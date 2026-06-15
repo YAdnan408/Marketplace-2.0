@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { getProducts, addProduct, updateProduct, deleteProduct, uploadProductImage } from "../../api/products";
+import { getImageUrl } from "../../api/utils";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import Modal from "../../components/ui/Modal";
@@ -37,7 +38,7 @@ export default function SellerProducts() {
   const openEdit = (p) => {
     setForm({ name: p.name, description: p.description, price: p.price, stock_quantity: p.stock_quantity, category_id: p.category_id || "" });
     setEditId(p.id);
-    setPreview(p.image_name ? `/uploads/product_images/${p.image_name}` : null);
+    setPreview(getImageUrl(p.image_name, "product"));
     setImageFile(null); setModalError(""); setModalOpen(true);
   };
   const openDelete = (p) => { setDeleteId(p.id); setDeleteName(p.name); setDeleteOpen(true); };
@@ -107,7 +108,7 @@ export default function SellerProducts() {
               <div className="product-card" key={p.id}>
                 <div className="product-card-image">
                   {p.image_name
-                    ? <img src={`/uploads/product_images/${p.image_name}`} alt={p.name} />
+                    ? <img src={getImageUrl(p.image_name, "product")} alt={p.name} />
                     : <div className="product-card-no-image">📷</div>}
                 </div>
                 <div className="product-card-body">

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
+import { getImageUrl } from "../../api/utils";
 import { getProductDetail } from "../../api/products";
 import { addToCart, getCart } from "../../hooks/useCart";
 import Navbar from "../../components/Navbar";
@@ -55,7 +56,7 @@ export default function ProductDetail() {
           <div className="pd-image-panel">
             <div className="pd-image-wrap">
               {product.image_name
-                ? <img className="pd-image" src={`/uploads/product_images/${product.image_name}`} alt={product.name} />
+                ? <img className="pd-image" src={getImageUrl(product.image_name, "product")} alt={product.name} />
                 : <div className="pd-image-placeholder">📷</div>}
             </div>
             <div className="pd-image-badge">{product.category_name}</div>
@@ -107,7 +108,7 @@ export default function ProductDetail() {
               <div className="pd-seller-card">
                 <div className="pd-seller-avatar">
                   {product.seller_image
-                    ? <img src={`/uploads/profile_images/${product.seller_image}`} alt={product.seller_name} />
+                    ? <img src={getImageUrl(product.seller_image, "profile")} alt={product.seller_name} />
                     : <span>{product.seller_name?.charAt(0).toUpperCase()}</span>}
                 </div>
                 <div className="pd-seller-info">

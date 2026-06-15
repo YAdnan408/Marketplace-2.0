@@ -22,6 +22,7 @@ class Settings(BaseSettings):
 
     # ── File uploads ──────────────────────────────────────────────────────────
     upload_dir: str = "uploads"
+    cloudinary_url: str = ""  # Format: cloudinary://api_key:api_secret@cloud_name
 
     model_config = SettingsConfigDict(
         env_file=".env",
@@ -35,9 +36,22 @@ class Settings(BaseSettings):
 
     @property
     def active_database_url(self) -> str:
+        url = self.database_url
         if self.app_env == "testing" and self.database_test_url:
-            return self.database_test_url
-        return self.database_url
+            url = self.database_test_url
+        
+        # Ensure the URL starts with postgresql+asyncpg:// for the asyncpg driver
+        if url.startswith("postgresql://") and "+asyncpg" not in url:
+            url = url.replace("postgresql://", "postgresql+asyncpg://", 1)
+        elif url.startswith("postgres://") and "+asyncpg" not in url:
+            # Handle the 'postgres://' prefix often used by Heroku/Render/Vercel
+            url = url.replace("postgres://", "postgresql+asyncpg://", 1)
+        
+        # asyncpg uses 'ssl' instead of 'sslmode'
+        if "+asyncpg" in url and "sslmode=" in url:
+            url = url.replace("sslmode=", "ssl=", 1)
+            
+        return url
 
 
 @lru_cache
