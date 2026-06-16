@@ -1,6 +1,6 @@
 from abc import abstractmethod
 
-from passlib.context import CryptContext
+import bcrypt
 
 from .exceptions import (
     UserValidationError,
@@ -10,7 +10,35 @@ from .exceptions import (
 )
 from .interfaces import IUserService
 
-_pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+# ── Password hashing ──────────────────────────────────────────────────────────
+# Hash directly with the `bcrypt` library instead of passlib.
+# passlib (unmaintained since 2020) runs an internal self-test on first use
+# that is incompatible with modern bcrypt releases (modern bcrypt raises
+# ValueError for >72-byte inputs instead of silently truncating, which
+# passlib's self-test doesn't expect — this crashes EVERY signup/login with
+# "ValueError: password cannot be longer than 72 bytes" regardless of how
+# short the user's actual password is). Calling bcrypt directly sidesteps
+# passlib's self-test entirely and removes this whole class of version bugs.
+
+_BCRYPT_MAX_BYTES = 72
+
+
+def _hash_password(password: str) -> str:
+    pw_bytes = password.encode("utf-8")
+    if len(pw_bytes) > _BCRYPT_MAX_BYTES:
+        raise UserValidationError(
+            f"Password must be {_BCRYPT_MAX_BYTES} bytes or fewer."
+        )
+    return bcrypt.hashpw(pw_bytes, bcrypt.gensalt()).decode("utf-8")
+
+
+def _verify_password(password: str, hashed: str) -> bool:
+    pw_bytes = password.encode("utf-8")[:_BCRYPT_MAX_BYTES]
+    try:
+        return bcrypt.checkpw(pw_bytes, hashed.encode("utf-8"))
+    except ValueError:
+        # Malformed/foreign hash format — treat as a non-match, not a crash.
+        return False
 
 
 class BaseUserService(IUserService):
@@ -53,7 +81,7 @@ class BaseUserService(IUserService):
         user = await self._repo.create({
             "name":         name,
             "email":        email,
-            "password":     _pwd_context.hash(password),
+            "password":     _hash_password(password),
             "phone_number": data.get("phone_number", ""),
             "address":      data.get("address", ""),
         })
@@ -72,7 +100,7 @@ class BaseUserService(IUserService):
                 f"No {self.user_type} account found with this email."
             )
 
-        if not _pwd_context.verify(password, user.password):
+        if not _verify_password(password, user.password):
             raise InvalidCredentialsError("Incorrect password.")
 
         return self._serialize(user)
