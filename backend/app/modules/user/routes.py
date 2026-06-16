@@ -30,7 +30,12 @@ router = APIRouter(prefix="/api", tags=["users"])
 # httponly=True  — JavaScript cannot read the cookie (XSS protection)
 # samesite="lax" — Cookie is sent on same-site requests and top-level navigations
 # secure=False   — Set to True in production (requires HTTPS)
-_COOKIE_OPTS = dict(httponly=True, samesite="lax", secure=False)
+_COOKIE_OPTS = dict(
+    httponly=True,
+    samesite="lax",
+    # secure=True is required in production (HTTPS). Set to False only for local dev.
+    secure=settings.app_env == "production",
+)
 
 
 # ── Dependency wiring ─────────────────────────────────────────────────────────

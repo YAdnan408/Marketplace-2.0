@@ -1,3 +1,5 @@
+import os
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
@@ -35,11 +37,20 @@ def create_app() -> FastAPI:
     )
 
     # ── Static file serving ───────────────────────────────────────────────────
-    app.mount(
-        "/uploads",
-        StaticFiles(directory=settings.upload_dir),
-        name="uploads",
-    )
+    # Only mount if the directory exists (skipped on Vercel serverless where
+    # the filesystem is read-only and the uploads/ folder does not exist).
+    if os.path.isdir(settings.upload_dir):
+        app.mount(
+            "/uploads",
+            StaticFiles(directory=settings.upload_dir),
+            name="uploads",
+        )
+    else:
+        logger.warning(
+            "Upload directory '%s' not found — static file serving disabled. "
+            "Use a cloud storage provider (e.g. Cloudinary) in production.",
+            settings.upload_dir,
+        )
 
     # ── Global exception handlers ─────────────────────────────────────────────
     register_exception_handlers(app)
