@@ -1,5 +1,18 @@
 import os
 
+# ── Passlib / bcrypt compatibility patch ──────────────────────────────────────
+# passlib 1.7.4 (unmaintained) calls `bcrypt.__about__.__version__` at startup.
+# bcrypt >= 4.1.0 removed `__about__`, causing AttributeError → 500 on every
+# signup/login. This patch restores the missing attribute before passlib loads.
+try:
+    import bcrypt as _bcrypt
+    if not hasattr(_bcrypt, "__about__"):
+        class _About:
+            __version__ = getattr(_bcrypt, "__version__", "0.0.0")
+        _bcrypt.__about__ = _About()
+except Exception:
+    pass
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles

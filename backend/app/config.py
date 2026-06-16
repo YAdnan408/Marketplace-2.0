@@ -47,10 +47,15 @@ class Settings(BaseSettings):
             # Handle the 'postgres://' prefix often used by Heroku/Render/Vercel
             url = url.replace("postgres://", "postgresql+asyncpg://", 1)
         
-        # asyncpg uses 'ssl' instead of 'sslmode'
-        if "+asyncpg" in url and "sslmode=" in url:
-            url = url.replace("sslmode=", "ssl=", 1)
-            
+        # Strip SSL params from the URL — SSL is passed via connect_args in
+        # database.py. Passing ssl in both the URL and connect_args causes
+        # asyncpg to raise a "duplicate SSL parameter" error.
+        import re
+        url = re.sub(r"[?&]sslmode=[^&]*", "", url)
+        url = re.sub(r"[?&]ssl=[^&]*", "", url)
+        # Clean up any trailing ? or & left after stripping
+        url = re.sub(r"[?&]$", "", url)
+
         return url
 
 
